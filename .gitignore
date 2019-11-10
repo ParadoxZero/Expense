@@ -1,0 +1,5 @@
+## Ignore Bulid Outputs
+.bin/
+.obj/
+
+## Ignore Development App Settings
