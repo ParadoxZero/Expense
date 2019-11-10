@@ -1,5 +1,12 @@
+#Ignore Editor Folders
+.vscode
+.idea
+.vs
+
 ## Ignore Bulid Outputs
-.bin/
-.obj/
+bin/
+obj/
 
 ## Ignore Development App Settings
+appsettings.Development.json
+
