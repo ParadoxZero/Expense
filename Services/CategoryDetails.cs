@@ -33,6 +33,7 @@ namespace Expense.Services
 {
     public class CategoryDetails
     {
+        #region Properties
         public BudgetStatus BudgetStatus
         {
             get
@@ -51,6 +52,8 @@ namespace Expense.Services
         public ExpenseCatagory Category { get; }
         public List<ExpenseItem> ExpenseList { get; }
 
+        #endregion
+
         public CategoryDetails(ExpenseCatagory catagory, List<ExpenseItem> items)
         {
             Category = catagory;
@@ -62,9 +65,9 @@ namespace Expense.Services
             return GetBudgetStatus(GetTotalofMonth(monthYear), GetMonthlyLimit(monthYear));
         }
 
-        public decimal GetHistoricTotal(DateTime from, DateTime to)
+        public decimal GetHistoricTotal(DateTime monthYear)
         {
-            throw new NotImplementedException();
+            return GetTotalofMonth(monthYear);
         }
 
         #region Private Methods
