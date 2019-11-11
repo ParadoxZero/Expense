@@ -27,18 +27,24 @@ using System.Linq;
 using System.Collections.Generic;
 using Expense.Data;
 using Expense.Enum;
+using Expense.Utils;
 
 namespace Expense.Services
 {
     public class CategoryDetails
     {
-        public BudgetStatus BudgetStatus { get; }
+        public BudgetStatus BudgetStatus
+        {
+            get
+            {
+                return GetBudgetStatus(TotalExpenseThisMonth, Category.MonthlyLimit);
+            }
+        }
         public decimal TotalExpenseThisMonth
         {
             get
             {
-                var now = DateTime.Now;
-                return ExpenseList.Where(x => x.Date >= new DateTime(now.Year, now.Month, 1))
+                return ExpenseList.Where(x => x.Date >= GetMonthYear(DateTime.Now))
                     .Select(x => x.Amount).Sum();
             }
         }
@@ -51,16 +57,65 @@ namespace Expense.Services
             ExpenseList = items;
         }
 
-        public BudgetStatus GetHistoricBudgetStatus(DateTime from, DateTime to)
+        public BudgetStatus GetHistoricBudgetStatus(DateTime monthYear)
         {
-            throw new NotImplementedException();
+            return GetBudgetStatus(GetTotalofMonth(monthYear), GetMonthlyLimit(monthYear));
         }
 
         public decimal GetHistoricTotal(DateTime from, DateTime to)
         {
             throw new NotImplementedException();
-
         }
 
+        #region Private Methods
+
+        private decimal GetTotalofMonth(DateTime monthYear)
+        {
+            return ExpenseList.Where(x => x.Date >= new DateTime(monthYear.Year, monthYear.Month, 1))
+                    .Select(x => x.Amount).Sum();
+        }
+
+        private decimal GetMonthlyLimit(DateTime monthYear)
+        {
+            Ensure.MonthYear(monthYear);
+            if (monthYear >= Category.MonthlyLimitValidFrom) // Check if given month year if valid for current limit.
+            {
+                return Category.MonthlyLimit;
+            }
+            return GetMonthlyLimitFromArchive(monthYear);
+        }
+
+        private decimal GetMonthlyLimitFromArchive(DateTime monthYear)
+        {
+            Ensure.MonthYear(monthYear);
+            return Category.MonthlyLimitHistory.Where(x => x.ValidFrom >= monthYear && x.ValidTo <= monthYear).First().Limit;
+        }
+
+        private DateTime GetCategoryMonthYear()
+        {
+            try
+            {
+                return Category.MonthlyLimitHistory.OrderBy(x => x.ValidFrom).Select(x => x.ValidFrom).First();
+            }
+            catch (InvalidOperationException)
+            {
+                return GetMonthYear(DateTime.Now);
+            }
+        }
+        private BudgetStatus GetBudgetStatus(decimal amount, decimal maxAllowed)
+        {
+            var percentage = Calculate.Percentage(amount, maxAllowed);
+            if (percentage == 0) return BudgetStatus.Empty;
+            else if (percentage < 50) return BudgetStatus.Low;
+            else if (percentage < 100) return BudgetStatus.High;
+            else return BudgetStatus.Overflowed;
+        }
+
+        private DateTime GetMonthYear(DateTime dateTime)
+        {
+            return new DateTime(dateTime.Year, dateTime.Month, 1);
+        }
+
+        #endregion
     }
 }

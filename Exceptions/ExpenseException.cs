@@ -22,14 +22,14 @@
  * SOFTWARE.
  */
 
-namespace Expense.Enum
+using System;
+
+namespace Expense.Exceptions
 {
-    public enum BudgetStatus
+    public class ExpenseException : Exception
     {
-        Empty,
-        Low,
-        High,
-        Filled,
-        Overflowed
+        public ExpenseException() : base() { }
+        public ExpenseException(string message) : base(message) { }
+        public ExpenseException(string message, Exception innerException) : base(message, innerException) { }
     }
 }

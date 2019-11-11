@@ -22,14 +22,14 @@
  * SOFTWARE.
  */
 
-namespace Expense.Enum
+namespace Expense.Utils
 {
-    public enum BudgetStatus
+    public static class Calculate
     {
-        Empty,
-        Low,
-        High,
-        Filled,
-        Overflowed
+        public static decimal Percentage(decimal value, decimal outOf)
+        {
+            decimal temp = value / outOf;
+            return temp * 100;
+        }
     }
 }
