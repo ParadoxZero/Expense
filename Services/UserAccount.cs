@@ -22,17 +22,10 @@
  * SOFTWARE.
  */
 
-using System;
-
-namespace Expense.Data
+namespace Expense.Services
 {
-    public class ExpenseItem : AbstractEntity
+    public class UserAccount
     {
-        public Guid UserId { get; set; }
-        public Guid CategoryId { get; set; }
-        public string ExpenseDescription { get; set; }
-        public decimal Amount { get; set; }
-        public DateTime Date { get; set; }
-        public ExpenseItem() : base(nameof(ExpenseItem)) { }
+        // TODO: Design the service
     }
 }

@@ -23,16 +23,44 @@
  */
 
 using System;
+using System.Linq;
+using System.Collections.Generic;
+using Expense.Data;
+using Expense.Enum;
 
-namespace Expense.Data
+namespace Expense.Services
 {
-    public class ExpenseItem : AbstractEntity
+    public class CategoryDetails
     {
-        public Guid UserId { get; set; }
-        public Guid CategoryId { get; set; }
-        public string ExpenseDescription { get; set; }
-        public decimal Amount { get; set; }
-        public DateTime Date { get; set; }
-        public ExpenseItem() : base(nameof(ExpenseItem)) { }
+        public BudgetStatus BudgetStatus { get; }
+        public decimal TotalExpenseThisMonth
+        {
+            get
+            {
+                var now = DateTime.Now;
+                return ExpenseList.Where(x => x.Date >= new DateTime(now.Year, now.Month, 1))
+                    .Select(x => x.Amount).Sum();
+            }
+        }
+        public ExpenseCatagory Category { get; }
+        public List<ExpenseItem> ExpenseList { get; }
+
+        public CategoryDetails(ExpenseCatagory catagory, List<ExpenseItem> items)
+        {
+            Category = catagory;
+            ExpenseList = items;
+        }
+
+        public BudgetStatus GetHistoricBudgetStatus(DateTime from, DateTime to)
+        {
+            throw new NotImplementedException();
+        }
+
+        public decimal GetHistoricTotal(DateTime from, DateTime to)
+        {
+            throw new NotImplementedException();
+
+        }
+
     }
 }
