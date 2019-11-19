@@ -23,6 +23,7 @@
  */
 
 using System;
+using System.Linq;
 
 namespace Expense.Utils
 {
@@ -30,7 +31,17 @@ namespace Expense.Utils
     {
         public static void NotNull<T>(params T[] args)
         {
-            throw new NotImplementedException();
+            foreach (var o in args)
+            {
+                if (o == null)
+                    throw new ArgumentNullException();
+            }
+        }
+
+        public static void MonthYear(params DateTime[] args)
+        {
+            if (args.Any(x => x.Day != 1))
+                throw new ArgumentException("DateTime Day value not 1");
         }
     }
 }

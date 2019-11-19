@@ -1,3 +1,4 @@
+using System.Linq;
 /*
  * MIT License
  * 
@@ -35,6 +36,7 @@ namespace Expense.Services
         #region Private Data
         private IDatabaseService _databaseService;
         private List<ExpenseCatagory> Categories { get; }
+        private List<ExpenseItem> ExpenseItems { get; }
         #endregion
 
         public Budget(IDatabaseService databaseService)
@@ -118,6 +120,16 @@ namespace Expense.Services
         private void UpdateFromDb()
         {
             throw new NotImplementedException();
+        }
+
+        private List<ExpenseItem> GetExpenseItems(Guid CategoryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RefreshCatagoryDetails()
+        {
+            CategoryDetails = Categories.Select(x => new CategoryDetails(x, GetExpenseItems(x.id))).ToList();
         }
         #endregion
     }
