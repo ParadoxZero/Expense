@@ -37,14 +37,14 @@ namespace ExpenseLogic.Services
         /// <param name="Condition"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T GetEntity<T>(Func<T, bool> Condition) where T : AbstractEntity;
+        T GetEntity<T>(Func<T, bool> Condition) where T : AbstractEntity;
         /// <summary>
         /// Get a queryable set of results.
         /// </summary>
         /// <param name="Condition"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public IQueryable<T> GetEntityQueryable<T>(Func<T, bool> Condition) where T : AbstractEntity;
+        IQueryable<T> GetEntityQueryable<T>(Func<T, bool> Condition) where T : AbstractEntity;
 
         /// <summary>
         /// Updates Entity in Db.
@@ -53,13 +53,13 @@ namespace ExpenseLogic.Services
         /// </summary>
         /// <param name="Entity"></param>
         /// <typeparam name="T"></typeparam>
-        public void UpdateEntity<T>(T Entity) where T : AbstractEntity;
+        void UpdateEntity<T>(T Entity) where T : AbstractEntity;
 
         /// <summary>
         /// Add new entity to db.
         /// </summary>
         /// <param name="Entity"></param>
         /// <typeparam name="T"></typeparam>
-        public void AddEntity<T>(T Entity) where T : AbstractEntity;
+        void AddEntity<T>(T Entity) where T : AbstractEntity;
     }
 }

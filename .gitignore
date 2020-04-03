@@ -3,10 +3,9 @@
 .idea
 .vs
 
-## Ignore Bulid Outputs	
-bin/	
+## Ignore Bulid Outputs		
 obj/
-
+bin/
 ## Ignore Development App Settings	
 appsettings.Development.json
 
