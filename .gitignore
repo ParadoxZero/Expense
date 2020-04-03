@@ -1,12 +1,14 @@
-#Ignore Editor Folders
+#Ignore Editor Folder
 .vscode
 .idea
 .vs
 
-## Ignore Bulid Outputs
-bin/
+## Ignore Bulid Outputs		
 obj/
-
-## Ignore Development App Settings
+bin/
+## Ignore Development App Settings	
 appsettings.Development.json
+
+UpgradeLog.htm
+
 

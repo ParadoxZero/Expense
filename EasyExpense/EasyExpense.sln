@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseLogic", "ExpenseLogic\ExpenseLogic.csproj", "{06846DC9-F0A2-4EB8-8CB2-AC506D531B91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{F20E571A-F0BA-4710-A94B-89ED859264CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{06846DC9-F0A2-4EB8-8CB2-AC506D531B91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06846DC9-F0A2-4EB8-8CB2-AC506D531B91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06846DC9-F0A2-4EB8-8CB2-AC506D531B91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06846DC9-F0A2-4EB8-8CB2-AC506D531B91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F20E571A-F0BA-4710-A94B-89ED859264CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F20E571A-F0BA-4710-A94B-89ED859264CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F20E571A-F0BA-4710-A94B-89ED859264CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F20E571A-F0BA-4710-A94B-89ED859264CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B740AAB3-3C72-481E-9859-91D0B68794FB}
+	EndGlobalSection
+EndGlobal
